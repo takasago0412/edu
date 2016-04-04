@@ -3,6 +3,7 @@ package jp.co.opt.edu01;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class TestStoreManager {
 		
 		// 期待されるソート順の店舗リスト
 		List<Store> expect = generateSampleData();
-		expect.sort(new StoreAreaComparator());
+		Collections.sort(expect, new StoreAreaComparator());
 
 		for (int i = 0; i < expect.size(); i++) {
 			// リストのソート順をチェック
@@ -43,7 +44,7 @@ public class TestStoreManager {
 		
 		// 期待されるソート順の店舗リスト
 		List<Store> expect = generateSampleData();
-		expect.sort(new StoreSalesComparator());
+		Collections.sort(expect, new StoreSalesComparator());
 		
 		for (int i = 0; i < expect.size(); i++) {
 			// リストのソート順をチェック
