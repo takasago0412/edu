@@ -14,7 +14,6 @@ public class StoreManager {
 	 * @return ソート済み店舗リスト
 	 */
 	public List<Store> sortByArea() {
-		stores.sort(new TestStoreManager().new StoreAreaComparator());
 		//TODO: ソート処理を実装
 		return stores;
 	}
@@ -24,7 +23,6 @@ public class StoreManager {
 	 * @return ソート済み店舗リスト
 	 */
 	public List<Store> sortBySales() {
-		stores.sort(new TestStoreManager().new StoreSalesComparator());
 		//TODO: ソート処理を実装
 		return stores;
 	}
