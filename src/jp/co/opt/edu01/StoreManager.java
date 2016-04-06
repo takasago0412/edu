@@ -14,7 +14,7 @@ public class StoreManager {
 	 * @return ソート済み店舗リスト
 	 */
 	public List<Store> sortByArea() {
-		//TODO: ソート処理を実装
+		//TODO: ソート処理を実装		
 		return stores;
 	}
 	
@@ -24,6 +24,18 @@ public class StoreManager {
 	 */
 	public List<Store> sortBySales() {
 		//TODO: ソート処理を実装
+		int count = stores.size() -1;
+		
+		for(int j = 0;j < stores.size()-1; j++){
+			for(int i = 0;i < count; i++){
+				if (stores.get(i).getSales() > stores.get(i+1).getSales()){
+					Store temp = stores.get(i); 
+					stores.set(i, stores.get(i+1));
+					stores.set(i+1, temp);
+				}			
+			}
+			count = count -1;
+		}
 		return stores;
 	}
 }
