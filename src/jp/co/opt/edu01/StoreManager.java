@@ -15,6 +15,19 @@ public class StoreManager {
 	 */
 	public List<Store> sortByArea() {
 		//TODO: ソート処理を実装		
+		int count = stores.size() -1;
+		
+		for(int j = 0;j < stores.size()-1; j++){
+			for(int i = 0;i < count; i++){
+				if (stores.get(i).getArea().compareTo(stores.get(i+1).getArea()) > 0){
+					Store temp = stores.get(i); 
+					stores.set(i, stores.get(i+1));
+					stores.set(i+1, temp);
+				}			
+			}
+			count = count -1;
+		}
+
 		return stores;
 	}
 	
