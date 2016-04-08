@@ -4,50 +4,45 @@ import java.util.List;
 
 public class StoreManager {
 	protected List<Store> stores;
-	
-	public StoreManager(List<Store> stores){
+
+	public StoreManager(List<Store> stores) {
 		this.stores = stores;
 	}
-	
+
 	/**
 	 * 店舗エリアの昇順でソートした店舗リストを返却する
 	 * @return ソート済み店舗リスト
 	 */
 	public List<Store> sortByArea() {
 		//TODO: ソート処理を実装		
-		int count = stores.size() -1;
-		
-		for(int j = 0;j < stores.size()-1; j++){
-			for(int i = 0;i < count; i++){
-				if (stores.get(i).getArea().compareTo(stores.get(i+1).getArea()) > 0){
-					Store temp = stores.get(i); 
-					stores.set(i, stores.get(i+1));
-					stores.set(i+1, temp);
-				}			
+
+		for (int i = stores.size() - 1; i >= 0 ; i--) {
+			for (int j = 0; j < i; j++) {
+				if (stores.get(j).getArea().compareTo(stores.get(j + 1).getArea()) > 0) {
+					Store temp = stores.get(j);
+					stores.set(j, stores.get(j + 1));
+					stores.set(j + 1, temp);
+				}
 			}
-			count = count -1;
 		}
 
 		return stores;
 	}
-	
+
 	/**
 	 * 売上高の降順でソートした店舗リストを返却する
 	 * @return ソート済み店舗リスト
 	 */
 	public List<Store> sortBySales() {
 		//TODO: ソート処理を実装
-		int count = stores.size() -1;
-		
-		for(int j = 0;j < stores.size()-1; j++){
-			for(int i = 0;i < count; i++){
-				if (stores.get(i).getSales() > stores.get(i+1).getSales()){
-					Store temp = stores.get(i); 
-					stores.set(i, stores.get(i+1));
-					stores.set(i+1, temp);
-				}			
+		for (int i = stores.size() - 1; i >= 0; i--) {
+			for (int j = 0; j < i; j++) {
+				if (stores.get(j).getSales() > stores.get(j + 1).getSales()) {
+					Store temp = stores.get(j);
+					stores.set(j, stores.get(j + 1));
+					stores.set(j + 1, temp);
+				}
 			}
-			count = count -1;
 		}
 		return stores;
 	}
