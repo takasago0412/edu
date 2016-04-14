@@ -15,7 +15,7 @@ public class StoreManager {
 	 */
 	public List<Store> sortByArea() {
 		//TODO: ソート処理を実装
-		return stores;
+		return this.stores;
 	}
 	
 	/**
@@ -24,7 +24,7 @@ public class StoreManager {
 	 */
 	public List<Store> sortBySales() {
 		//TODO: ソート処理を実装
-		return stores;
+		return this.stores;
 	}
 }
 
