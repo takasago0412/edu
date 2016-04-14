@@ -16,7 +16,7 @@ public class StoreManager {
 	public List<Store> sortByArea() {
 		//TODO: ソート処理を実装		
 
-		for (int i = stores.size() - 1; i >= 0 ; i--) {
+		for (int i = stores.size() - 1; i > 0 ; i--) {
 			for (int j = 0; j < i; j++) {
 				if (stores.get(j).getArea().compareTo(stores.get(j + 1).getArea()) > 0) {
 					Store temp = stores.get(j);
@@ -35,7 +35,7 @@ public class StoreManager {
 	 */
 	public List<Store> sortBySales() {
 		//TODO: ソート処理を実装
-		for (int i = stores.size() - 1; i >= 0; i--) {
+		for (int i = stores.size() - 1; i > 0; i--) {
 			for (int j = 0; j < i; j++) {
 				if (stores.get(j).getSales() > stores.get(j + 1).getSales()) {
 					Store temp = stores.get(j);
