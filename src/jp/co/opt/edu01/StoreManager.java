@@ -26,7 +26,7 @@ public class StoreManager {
 			}
 		}
 
-		return stores;
+		return this.stores;
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class StoreManager {
 				}
 			}
 		}
-		return stores;
+		return this.stores;
 	}
 }
 

@@ -17,20 +17,30 @@ public class StoreManager extends jp.co.opt.edu01.StoreManager{
 	public List<Store> groupByArea() {
 		List<Store> sortStoreList = sortByArea();
 		List<Store> groupByAreaStore= new ArrayList<Store>();
-		int sum =0;
+		int sum = 0;
+		String area;		
 		
 		sum = sortStoreList.get(0).getSales();
-		for(int i=0; i < sortStoreList.size()-1 ; i++){
+		area = sortStoreList.get(0).getArea();
+		for(int i=1; i < sortStoreList.size() ; i++){
 			Store setStore= new Store();
-			if(sortStoreList.get(i).getArea().equals(sortStoreList.get(i+1).getArea())){
-				sum = sum + sortStoreList.get(i+1).getSales();
+			if(area.equals(sortStoreList.get(i).getArea())){
+				sum = sum + sortStoreList.get(i).getSales();
 			}
 			else {
-				setStore.setArea(sortStoreList.get(i).getArea());
+				setStore.setArea(area);
 				setStore.setSales(sum);
 				setStore.setName("test");
 				groupByAreaStore.add(setStore);
-				sum = sortStoreList.get(i+1).getSales();
+				sum = sortStoreList.get(i).getSales();
+				area = sortStoreList.get(i).getArea();
+			}
+			if(i == sortStoreList.size()-1){
+				setStore= new Store();
+				setStore.setArea(area);
+				setStore.setSales(sum);
+				setStore.setName("test");
+				groupByAreaStore.add(setStore);				
 			}
 		}
 		//TODO: 店舗エリアごとの売上高合計処理を実装(Mapやそのサブクラスを使用せずソートされた店舗リストを集計)

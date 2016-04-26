@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import jp.co.opt.edu01.Store;
 
@@ -35,14 +34,18 @@ public class TestStoreManager {
 			}
 		}
 
-		for (Store store : groupByArea) {
-			String area = store.getArea();
-			Store expect = map.get(area);
+		for (Map.Entry<String, Store> entry : map.entrySet()) {
+			boolean result = false;
+			for (Store store : groupByArea) {
+				Store expect = entry.getValue();
+				if (expect.getArea().equals(store.getArea())) {
+					result = true;
+					assertEquals(expect.getArea() + ":" + expect.getSales(), store.getArea() + ":" + store.getSales());
+				}
+			}
 
-			if (expect != null) {
-				assertEquals(expect.getSales(), store.getSales());
-			} else {
-				Assert.fail("想定されるキーが異なる");
+			if (!result) {
+				Assert.fail(entry.getKey() + "が見つかりません");
 			}
 		}
 	}
