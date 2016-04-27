@@ -18,34 +18,29 @@ public class StoreManager extends jp.co.opt.edu01.StoreManager {
 		List<Store> sortStoreList = sortByArea();
 		List<Store> groupByAreaStore = new ArrayList<Store>();
 		int sum = 0;
-		String area;
-		Store setStore = new Store();
+		String area = "";
+		Store setStore;
 
-		sum = sortStoreList.get(0).getSales();
-		area = sortStoreList.get(0).getArea();
-
-		if (sortStoreList.size() == 1) {
-			setStore.setArea(area);
-			setStore.setSales(sum);
-			setStore.setName("test");
-			groupByAreaStore.add(setStore);
-
-		}
-
-		for (int i = 1; i < sortStoreList.size(); i++) {
-			if (area.equals(sortStoreList.get(i).getArea())) {
-				sum = sum + sortStoreList.get(i).getSales();
+		for (int i = 0; i < sortStoreList.size(); i++) {
+			if (i == 0) {
+				sum = sortStoreList.get(0).getSales();
+				area = sortStoreList.get(0).getArea();
 			}
 			else {
-				setStore = new Store();
-				setStore.setArea(area);
-				setStore.setSales(sum);
-				setStore.setName("test");
-				groupByAreaStore.add(setStore);
-				sum = sortStoreList.get(i).getSales();
-				area = sortStoreList.get(i).getArea();
-			}
 
+				if (area.equals(sortStoreList.get(i).getArea())) {
+					sum = sum + sortStoreList.get(i).getSales();
+				}
+				else {
+					setStore = new Store();
+					setStore.setArea(area);
+					setStore.setSales(sum);
+					setStore.setName("test");
+					groupByAreaStore.add(setStore);
+					sum = sortStoreList.get(i).getSales();
+					area = sortStoreList.get(i).getArea();
+				}
+			}
 			if (i == sortStoreList.size() - 1) {
 				setStore = new Store();
 				setStore.setArea(area);
