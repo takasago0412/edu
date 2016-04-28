@@ -56,6 +56,17 @@ public class TestStoreManager {
 		checkMatchingList(transactionStores);
 	}
 
+	/**
+	 * マッチング処理のテスト
+	 */
+	@Test
+	public void testMatchingByArea5() {
+		List<Store> transactionStores = new ArrayList<>();
+		transactionStores.add(new Store("島根県松江市", "", 0));
+		transactionStores.add(new Store("島根県松江市", "", 0));
+		checkMatchingList(transactionStores);
+	}
+	
 	private void checkMatchingList(List<Store> transactionStores) {
 		// 期待される店舗リスト
 		List<Store> expectList = new ArrayList<>();
@@ -63,7 +74,6 @@ public class TestStoreManager {
 			for (Store transactionStore : transactionStores) {
 				if (transactionStore.getArea().equals(store.getArea())) {
 					expectList.add(store);
-					System.out.println("expectList:" + store.toString());
 					break;
 				}
 			}

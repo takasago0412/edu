@@ -11,11 +11,12 @@ public class StoreManager extends jp.co.opt.edu02.StoreManager{
 	}
 	
 	/**
-	 * 当クラスで管理する店舗リストの中から、引数で渡された店舗リストの店舗エリアが一致する店舗をリストにして返す
-	 * @param transactionSortedStores 店舗エリアでソートされた店舗リスト
+	 * 当クラスで管理する店舗リスト(マスター)と引数で渡された店舗リスト(トランザクション)を店舗エリアで比較し、マッチしたがマスターの店舗をリストにして返す
+	 * @param transactionSortedStores 店舗エリアでソートされた店舗リスト(トランザクション)
 	 * @return マッチング結果の店舗リスト
 	 */
 	public List<Store> matchingByArea(List<Store> transactionSortedStores) {
+		// マスター
 		List<Store> masterSortedStores = sortByArea();
 		
 		// 結果リストには当クラスで管理する店舗リストの中からマッチングした店舗を抜き出して格納
