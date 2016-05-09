@@ -1,6 +1,6 @@
 package jp.co.opt.edu03;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +18,11 @@ public class TestStoreManager {
 	@Test
 	public void testMatchingByArea1() {
 		String[] areas = { "鳥取県米子市", "島根県出雲市", "島根県松江市", "島根県安来市", "鳥取県西伯郡" };
-
+		List<Store> transactionStores = new ArrayList<>();
 		for (int i = 0; i < areas.length; i++) {
-			List<Store> transactionStores = new ArrayList<>();
 			transactionStores.add(new Store(areas[i], "", 0));
-			checkMatchingList(transactionStores);
 		}
+		checkMatchingList(transactionStores);
 	}
 
 	/**
