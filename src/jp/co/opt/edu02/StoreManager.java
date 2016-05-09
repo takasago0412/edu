@@ -16,10 +16,9 @@ public class StoreManager extends jp.co.opt.edu01.StoreManager {
 	 */
 	public List<Store> groupByArea() {
 		List<Store> sortStoreList = sortByArea();
-		List<Store> groupByAreaStore = new ArrayList<Store>();
+		List<Store> storeListByArea = new ArrayList<Store>();
 		int sum = 0;
 		String area = "";
-		Store setStore;
 
 		for (int i = 0; i < sortStoreList.size(); i++) {
 			if (i == 0) {
@@ -29,27 +28,28 @@ public class StoreManager extends jp.co.opt.edu01.StoreManager {
 			else {
 
 				if (area.equals(sortStoreList.get(i).getArea())) {
-					sum = sum + sortStoreList.get(i).getSales();
+					sum += sortStoreList.get(i).getSales();
 				}
 				else {
-					setStore = new Store();
-					setStore.setArea(area);
-					setStore.setSales(sum);
-					setStore.setName("test");
-					groupByAreaStore.add(setStore);
+					setStore(area , sum, storeListByArea);
 					sum = sortStoreList.get(i).getSales();
 					area = sortStoreList.get(i).getArea();
 				}
 			}
 			if (i == sortStoreList.size() - 1) {
-				setStore = new Store();
-				setStore.setArea(area);
-				setStore.setSales(sum);
-				setStore.setName("test");
-				groupByAreaStore.add(setStore);
+				setStore(area , sum, storeListByArea);
 			}
 		}
 		//TODO: 店舗エリアごとの売上高合計処理を実装(Mapやそのサブクラスを使用せずソートされた店舗リストを集計)
-		return groupByAreaStore;
+		return storeListByArea;
 	}
+	public void setStore(String area,int sum,List<Store> storeListByArea){
+		Store setStore = new Store();
+		setStore.setArea(area);
+		setStore.setSales(sum);
+		setStore.setName("test");
+		storeListByArea.add(setStore);
+
+	}
+
 }
