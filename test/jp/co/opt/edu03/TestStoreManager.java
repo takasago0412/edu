@@ -18,11 +18,11 @@ public class TestStoreManager {
 	@Test
 	public void testMatchingByArea1() {
 		String[] areas = { "鳥取県米子市", "島根県出雲市", "島根県松江市", "島根県安来市", "鳥取県西伯郡" };
-		List<Store> transactionStores = new ArrayList<>();
 		for (int i = 0; i < areas.length; i++) {
-			transactionStores.add(new Store(areas[i], "", 0));
+			List<Store> transactionStores = new ArrayList<>();
+  			transactionStores.add(new Store(areas[i], "", 0));
+ 			checkMatchingList(transactionStores);
 		}
-		checkMatchingList(transactionStores);
 	}
 
 	/**
