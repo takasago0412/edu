@@ -30,14 +30,13 @@ public class StoreManager extends jp.co.opt.edu02.StoreManager {
 		List<String> areaMaster = new ArrayList<>();
 		List<String> areaTransaction = new ArrayList<>();
 
-
 		// 結果リストには当クラスで管理する店舗リストの中からマッチングした店舗を抜き出して格納
 		List<Store> result = new ArrayList<>();
 		List<String> areaResult = new ArrayList<>();
 
 		// エリアごとのリストを格納
-		List<List<Store>> storeListByArea = new ArrayList<>();
-		List<Store> storeByArea = new ArrayList<>();
+		List<List<Store>> addToStore = new ArrayList<>();
+		List<Store> storeList = new ArrayList<>();
 		String areaToCompare = "";
 
 		boolean isFirst = true;
@@ -54,26 +53,25 @@ public class StoreManager extends jp.co.opt.edu02.StoreManager {
 			if(i < masterSortedStores.size()){
 				if (!area.equals(masterSortedStores.get(i).getArea())) {
 					if (isFirst == false) {
-						storeListByArea.add(storeByArea);
+						addToStore.add(storeList);
 						areaToCompare = area;
 						areaMaster.add(areaToCompare);
 					}
-					storeByArea = new ArrayList<Store>();
+					storeList = new ArrayList<>();
 					isFirst = false;
 
 				}
 
-				// 直前のデータと一緒の場合、storeListByAreaにデータを格納
-				storeByArea.add(masterSortedStores.get(i));
+				storeList.add(masterSortedStores.get(i));
 
 				area = masterSortedStores.get(i).getArea();
 
 				// 最後のデータの場合
 				if (i == masterSortedStores.size() - 1) {
-					storeListByArea.add(storeByArea);
+					addToStore.add(storeList);
 					if(!area.equals(areaToCompare)){
 						if (areaTransaction.contains(areaToCompare) && !areaResult.contains(areaToCompare)) {
-							result.addAll(storeListByArea.get(areaMaster.indexOf(areaToCompare)));
+							result.addAll(addToStore.get(areaMaster.indexOf(areaToCompare)));
 							areaResult.add(areaToCompare);
 						}
 					}
@@ -82,17 +80,17 @@ public class StoreManager extends jp.co.opt.edu02.StoreManager {
 				}
 
 				if (areaTransaction.contains(areaToCompare) && !areaResult.contains(areaToCompare)) {
-					result.addAll(storeListByArea.get(areaMaster.indexOf(areaToCompare)));
+					result.addAll(addToStore.get(areaMaster.indexOf(areaToCompare)));
 					areaResult.add(areaToCompare);
 				}
 			}
 
 
-			if(i < transactionSortedStores.size()){
-				String areaTran= transactionSortedStores.get(i).getArea();
-				areaTransaction.add(transactionSortedStores.get(i).getArea());
+			if (i < transactionSortedStores.size()) {
+				String areaTran = transactionSortedStores.get(i).getArea();
+				areaTransaction.add(areaTran);
 				if (areaMaster.contains(areaTran) && !areaResult.contains(areaTran)) {					
-					result.addAll(storeListByArea.get(areaMaster.indexOf(areaTran)));
+					result.addAll(addToStore.get(areaMaster.indexOf(areaTran)));
 					areaResult.add(areaTran);
 				}
 			}
